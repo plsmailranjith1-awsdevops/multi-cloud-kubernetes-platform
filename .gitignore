@@ -1,0 +1,13 @@
+*.tfstate
+*.tfstate.*
+.env
+.env.*
+.terraform/
+.kube/
+*.pem
+id_rsa
+id_ed25519
+github_ed25519
+.vscode/
+.idea/
+*.log
