@@ -11,3 +11,5 @@ github_ed25519
 .vscode/
 .idea/
 *.log
+
+tfplan*
