@@ -9,6 +9,20 @@ module "eks" {
 
   enable_cluster_creator_admin_permissions = true
 
+  addons = {
+    vpc-cni = {
+      addon_version = "v1.22.4-eksbuild.3"
+    }
+
+    kube-proxy = {
+      addon_version = "v1.33.10-eksbuild.29"
+    }
+
+    coredns = {
+      addon_version = "v1.13.2-eksbuild.31"
+    }
+  }
+
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
