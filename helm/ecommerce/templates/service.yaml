@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ecommerce.fullname" . }}
+  labels:
+    app: {{ include "ecommerce.name" . }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ include "ecommerce.name" . }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP

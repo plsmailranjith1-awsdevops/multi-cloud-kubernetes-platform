@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ecommerce.fullname" . }}
+  labels:
+    app: {{ include "ecommerce.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ecommerce.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ecommerce.name" . }}
+    spec:
+      containers:
+        - name: ecommerce
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+          env:
+            - name: APP_NAME
+              value: {{ .Values.config.APP_NAME | quote }}
+            - name: APP_ENV
+              value: {{ .Values.config.APP_ENV | quote }}
+            - name: PORT
+              value: {{ .Values.config.PORT | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
