@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: app/v1
 kind: Deployment
 metadata:
   name: {{ include "ecommerce.fullname" . }}
@@ -21,12 +21,10 @@ spec:
           ports:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
-          env:
-            - name: APP_NAME
-              value: {{ .Values.config.APP_NAME | quote }}
-            - name: APP_ENV
-              value: {{ .Values.config.APP_ENV | quote }}
-            - name: PORT
-              value: {{ .Values.config.PORT | quote }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "ecommerce.fullname" . }}-config
+            - secretRef:
+                name: {{ include "ecommerce.fullname" . }}-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
