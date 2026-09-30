@@ -43,3 +43,10 @@ The `gitops/` directory provides environment-specific Kubernetes deployment entr
 - Azure: `gitops/azure/`
 - Shared workloads: `kubernetes/base/`
 - Cloud overlays: `kubernetes/overlays/`
+
+## Architecture
+
+The platform uses Terraform to provision AWS EKS and Azure AKS infrastructure, Docker for containerization, ECR/ACR for container images, Helm for Kubernetes application packaging, and GitOps-based environment configurations.
+
+See the detailed architecture:
+`docs/architecture/README.md`
