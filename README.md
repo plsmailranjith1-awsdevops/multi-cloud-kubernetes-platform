@@ -34,3 +34,12 @@ Architecture documentation: `docs/architecture/README.md`
 - Trivy: container vulnerability scan completed
 - HPA: CPU-based autoscaling configured from 2 to 5 replicas
 - NGINX Ingress: configured for ecommerce
+
+## GitOps
+
+The `gitops/` directory provides environment-specific Kubernetes deployment entry points for AWS EKS and Azure AKS.
+
+- AWS: `gitops/aws/`
+- Azure: `gitops/azure/`
+- Shared workloads: `kubernetes/base/`
+- Cloud overlays: `kubernetes/overlays/`
